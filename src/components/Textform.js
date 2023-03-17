@@ -37,7 +37,10 @@ export default function Textform(props) {
   // setText("new text"); // correct way to change the state
   return (
     <>
-      <div class="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#000d50" }}
+      >
         <h1>{props.heading} </h1>
         <div className="mb-3">
           <textarea
@@ -46,6 +49,10 @@ export default function Textform(props) {
             onChange={handleOnChange}
             id="myBox"
             rows="8"
+            style={{
+              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              color: props.mode === "dark" ? "white" : "#000d50",
+            }}
           ></textarea>
           <div className="btn btn-primary my-3 mx-2" onClick={handleUpClick}>
             Convert to upper case
@@ -64,14 +71,17 @@ export default function Textform(props) {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#000d50" }}
+      >
         <h1>Your text summary</h1>
         <p>
           {text.split(" ").length} words and {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} minutes to read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0 ? text : "Enter something in the above box to preview here "}</p>
       </div>
     </>
   );

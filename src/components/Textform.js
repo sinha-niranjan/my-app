@@ -5,32 +5,38 @@ export default function Textform(props) {
     //console.log("handleupclick is clicked " + text);
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("converted into upper case.", "success : ");
   };
   const handleLoClick = () => {
     //console.log("handleupclick is clicked " + text);
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("converted into lower case.", "success : ");
   };
   const handleClearClick = () => {
     //console.log("handleupclick is clicked " + text);
     let newText = "";
     setText(newText);
+    props.showAlert("text box is cleared.", "success : ");
   };
 
   const handleOnChange = (event) => {
     //console.log("Handle on change ");
     setText(event.target.value);
+
   };
 
   const handleCopyClick = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("All text has been copied in clipboard.", "success : ");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("All extra spaces has been removed.", "success : ");
   };
   const [text, setText] = useState("Enter text here  ");
   // text = "new text";// wrong way to change the state
@@ -68,6 +74,12 @@ export default function Textform(props) {
             onClick={handleExtraSpaces}
           >
             Remove extra spaces
+          </div>
+          <div
+            className="btn btn-primary my-3 mx-2"
+            onClick={handleCopyClick}
+          >
+            Copy
           </div>
         </div>
       </div>
